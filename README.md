@@ -59,6 +59,19 @@ To build the frontend for production: `cd frontend && npm run build` (output
 in `frontend/dist`, not served by anything in this repo — it's a static
 build you'd put behind your own web server).
 
+### With Docker
+
+```bash
+docker compose up --build
+```
+
+Open `http://localhost:8080` — one URL for the whole app. `frontend`'s nginx
+container serves the built static files and reverse-proxies `/api/*` to the
+`backend` container (`frontend/nginx.conf`); the backend itself is not
+published to the host, only reachable from `frontend` over the compose
+network. Final images: backend ~20MB (distroless + static Go binary),
+frontend ~76MB (nginx:alpine + the static build).
+
 ## Running tests
 
 ```bash
@@ -161,8 +174,9 @@ Full rationale in [`docs/requirements.md`](docs/requirements.md) and
 - **Backend is the sole source of truth for validation**; the frontend only
   does UX-level checks (disabling submit) and renders backend errors as-is.
 - **Stateless** — no calculation history.
-- **No Dockerfile** — marked optional in the assignment, skipped given the
-  timebox.
+- **Dockerized** — multi-stage `backend/Dockerfile` (Go build → distroless
+  static) and `frontend/Dockerfile` (Node build → nginx), composed by the
+  root `docker-compose.yml` into a single published URL.
 
 ## Project structure
 
@@ -174,6 +188,8 @@ backend/
 frontend/
   src/api/               typed fetch client
   src/components/        Calculator form/UI
+  nginx.conf             production reverse-proxy config (used by Dockerfile)
+docker-compose.yml       composes backend + frontend behind one URL
 docs/
   assignment.md          original brief (input only)
   requirements.md        locked scope decisions + API contract (source of truth)
@@ -184,7 +200,5 @@ PROMPTS.md               prompts used during development
 ## Known limitations
 
 - No frontend automated tests (see "Running tests" above).
-- Responsive/mobile layout has a CSS breakpoint but hasn't been verified on
-  an actual narrow viewport, only visually inspected at desktop width.
 - No persistence/history, by design — each calculation is a single
   stateless request.

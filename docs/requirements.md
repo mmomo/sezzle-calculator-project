@@ -16,7 +16,7 @@ phase to resolve ambiguity in the original assignment.
 | 6 | Validation | Backend is the single source of truth; frontend validation is UX-only (e.g. disable submit on empty field) |
 | 7 | State | Stateless — no calculation history persisted |
 | 8 | Dev connectivity | Vite dev-server proxies `/api/*` to the Go backend; same-origin in dev, no CORS needed |
-| 9 | Dockerfile | Out of scope |
+| 9 | Dockerfile | Added in the Operations phase: multi-stage `backend/Dockerfile` (distroless) and `frontend/Dockerfile` (nginx), composed by root `docker-compose.yml`. Reverses the original Inception-phase decision to skip it. |
 | 10 | Coverage reporting | Plain `go test -cover` / `vitest --coverage` terminal summary pasted into README |
 
 ## Operations
