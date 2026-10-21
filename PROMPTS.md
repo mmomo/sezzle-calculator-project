@@ -12,5 +12,17 @@
 - Create first unit of work for backend
 - Continue with next unit of work for frontend
 
+- Improve the frontend UI. Goals, in priority order:
+1. Clarity: obvious inputs, operation selection, and a prominent result area.
+2. Feedback: loading state during API calls, clear inline validation errors,
+   and distinct styling for server errors vs. validation errors.
+3. Responsive: works well at 375px mobile width and on desktop.
+4. Accessibility: proper labels, keyboard navigation, visible focus states,
+   aria-live on the result so screen readers announce it.
+5. Visual: clean and minimal, one accent color, CSS variables for theming.
+Constraints: plain CSS, no UI libraries, keep components and tests passing.
+Propose the changes first.
+
 ## Operations
 
+- Audit the current code against docs/requirements.md and the deliverables in docs/assignment.md. Produce a checklist: each requirement  done / partial / missing, with file references. Don't change any code yet.
