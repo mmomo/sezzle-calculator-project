@@ -8,10 +8,13 @@ import (
 	"github.com/mmomo/sezzle-calculator-project/backend/internal/api"
 )
 
-func main() {
+func newMux() *http.ServeMux {
 	mux := http.NewServeMux()
 	mux.HandleFunc("POST /api/calculate", api.CalculateHandler)
+	return mux
+}
 
+func main() {
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "8080"
@@ -19,7 +22,7 @@ func main() {
 	addr := ":" + port
 
 	log.Printf("listening on %s", addr)
-	if err := http.ListenAndServe(addr, mux); err != nil {
+	if err := http.ListenAndServe(addr, newMux()); err != nil {
 		log.Fatal(err)
 	}
 }

@@ -19,11 +19,13 @@ func TestCalculate(t *testing.T) {
 		{name: "divide", op: Divide, a: 10, b: 2, want: 5},
 		{name: "divide by zero", op: Divide, a: 10, b: 0, wantErr: ErrDivideByZero},
 		{name: "exponentiate", op: Exponentiate, a: 2, b: 10, want: 1024},
+		{name: "exponentiate negative exponent", op: Exponentiate, a: 2, b: -1, want: 0.5},
 		{name: "exponentiate overflow", op: Exponentiate, a: 10, b: 400, wantErr: ErrNotFinite},
 		{name: "sqrt", op: Sqrt, a: 16, want: 4},
 		{name: "sqrt negative", op: Sqrt, a: -4, wantErr: ErrNegativeSqrt},
 		{name: "percentage", op: Percentage, a: 50, b: 200, want: 100},
 		{name: "percentage of zero", op: Percentage, a: 50, b: 0, want: 0},
+		{name: "percentage negative operand", op: Percentage, a: -10, b: 50, want: -5},
 		{name: "unknown operation", op: Operation("bogus"), a: 1, b: 1, wantErr: ErrUnknownOperation},
 	}
 

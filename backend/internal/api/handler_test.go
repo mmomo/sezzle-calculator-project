@@ -47,6 +47,18 @@ func TestCalculateHandler(t *testing.T) {
 			wantErrSub: "invalid request body",
 		},
 		{
+			name:       "wrong json type for a",
+			body:       `{"operation":"add","a":"two","b":3}`,
+			wantStatus: http.StatusBadRequest,
+			wantErrSub: "invalid request body",
+		},
+		{
+			name:       "explicit null b for binary operation",
+			body:       `{"operation":"add","a":1,"b":null}`,
+			wantStatus: http.StatusBadRequest,
+			wantErrSub: `"b" is required`,
+		},
+		{
 			name:       "unknown operation",
 			body:       `{"operation":"modulo","a":1,"b":2}`,
 			wantStatus: http.StatusBadRequest,

@@ -23,6 +23,10 @@
 Constraints: plain CSS, no UI libraries, keep components and tests passing.
 Propose the changes first.
 
+
+-Review test coverage. Run the backend coverage and report the numbers. Then propose the most valuable missing tests
+(edge cases, error paths, UI error states). Don't chase 100%; focus on key behavior. Plan first.
+
 ## Operations
 
 - Audit the current code against docs/requirements.md and the deliverables in docs/assignment.md. Produce a checklist: each requirement  done / partial / missing, with file references. Don't change any code yet.
