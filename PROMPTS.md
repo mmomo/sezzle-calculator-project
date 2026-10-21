@@ -9,6 +9,8 @@
 
 ## Construction
 
+- Create first unit of work for backend
+- Continue with next unit of work for frontend
 
 ## Operations
 
