@@ -7,6 +7,23 @@ TypeScript frontend (Vite), built as a take-home assignment
 [`docs/design.md`](docs/design.md) — this README covers setup, running, and
 a summary of the decisions that matter to a reviewer.
 
+## Development process
+
+Built using **AI-DLC** (AI-Driven Development Life Cycle), working through
+three phases with Claude Code:
+
+- **Inception** — read the assignment, surfaced ambiguities as explicit
+  options + a recommendation, and got a decision on each before any code was
+  written. Locked into [`docs/requirements.md`](docs/requirements.md).
+- **Construction** — designed the package/component layout
+  ([`docs/design.md`](docs/design.md)), then implemented backend and
+  frontend as separate reviewed units of work, tests alongside the code.
+- **Operations** — ran the app end-to-end (backend + frontend dev server),
+  manually verified golden-path and error cases in the browser, and audited
+  the result against the requirements and assignment deliverables.
+
+The full prompt history for each phase is in [`PROMPTS.md`](PROMPTS.md).
+
 ## Prerequisites
 
 - Go 1.27+ (developed against `go1.27.2`)
